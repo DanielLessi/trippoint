@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="pt-br">
+<head th:replace="~{fragmentos/_header :: header('TripPoint - Cadastro de Destinos')}"></head>
+<body>
+<nav th:replace="~{fragmentos/admin/_navbarAdmin :: navbar(${isLogged}, ${usuarioNavbar}, ${isAdmin})}"></nav>
+	<div class="container-sm">
+	<h1>Cadastro de Destino</h1>
+	<!--Form-->
+		<form th:action="@{/admin/cadastrar}" method="POST" th:object="${destino}" enctype="multipart/form-data">
+			<div class="mb-3">
+				<label for="nome" class="form-label">Nome do destino.</label>
+				<input type="text" class="form-control" id="nome"  th:field="*{nome}" required>
+			</div>
+			<div class="mb-3">
+			  <label for="imagem" class="form-label">Envie a imagem que será usada para ilustrar o destino.</label>
+			  <input class="form-control" type="file" id="imagem" name="imagemDestino" required>
+			</div>
+			<div class="mb-3">
+				<label for="preco" class="form-label">Preço da viagem ao destino</label>
+				<input type="number" class="form-control" id="preco" th:field="*{preco}" required>
+			</div>
+			<div class="mb-3">
+					<label for="promocao" class="form-label">Promoção:</label>
+					<div class="mb-3">
+						<input type="radio" name="opc" id="sim" value="true" th:field="*{promocao}" required />
+						<label for="sim">Sim</label>
+						<input type="radio" name="opc" id="nao" value="false" th:field="*{promocao}" required />
+						<label for="nao">Não</label>
+					</div>
+				</div>
+			<div class="mb-3">
+				<label for="preco" class="form-label">Porcentagem do desconto</label>
+				<input type="number" class="form-control" id="porcDesconto" th:field="*{porcDesconto}" required>
+			</div>
+			<div class="mb-3">
+				<label for="pais" class="form-label">País do destino</label>
+				<input type="text" class="form-control" id="pais" th:field="*{pais}" required>
+			</div>
+			<div class="mb-3">
+				<label for="continente" class="form-label">Continente do destino</label>
+				<input type="text" class="form-control" id="continente" th:field="*{continente}" required>
+			</div>
+			<button type="submit" class="btn btn-primary">Cadastrar</button>
+		</form>
+	<!--Form-->
+	</div>
+	<footer th:replace="~{fragmentos/_footer :: footer}"></footer>
+</body>
+
+</html>

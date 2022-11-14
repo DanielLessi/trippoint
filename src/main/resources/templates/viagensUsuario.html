@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head th:replace="~{fragmentos/_header :: header('TripPoint - Home')}"></head>
+
+<body>
+	<nav th:replace="~{fragmentos/_navbar :: navbar(${isLogged}, ${usuarioNavbar}, ${isAdmin}, ${notificacoes})}"></nav>
+	<main class="container">
+		<h1>Viagens Usuario</h1>
+		<div class="row">
+			<div class="col-sm-12">
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col">Usuario</th>
+							<th scope="col">Destino</th>
+							<th scope="col">Preço Pago</th>
+							<th scope="col">Data Ida</th>
+							<th scope="col">Hora Ida</th>
+							<th scope="col">Data Volta</th>
+							<th scope="col">Hora Volta</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="viagemAgendada : ${viagensAgendadas}">
+							<th scope="row" th:text="${viagemAgendada.id}"></th>
+							<td th:text="${viagemAgendada.usuario.nome}"></td>
+							<td th:text="${viagemAgendada.destino.nome}"></td>
+							<td th:text="${viagemAgendada.preco}"></td>
+							<td th:text="${viagemAgendada.dataIda}"></td>
+							<td th:text="${viagemAgendada.horaIda}"></td>
+							<td th:text="${viagemAgendada.dataVolta}"></td>
+							<td th:text="${viagemAgendada.horaVolta}"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</main>
+	<footer th:replace="~{fragmentos/_footer :: footer}"></footer>
+</body>
+
+</html>

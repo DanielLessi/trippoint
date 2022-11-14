@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+	<title>Listagem de Clientes</title>
+	<link rel="stylesheet" href="../../css/style.css" />
+</head>
+
+<body>
+
+	<nav th:replace="~{fragmentos/admin/_navbarAdmin :: navbar(${isLogged}, ${usuarioNavbar}, ${isAdmin})}"></nav>
+
+	<main class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<h1>Destinos Cadastrados</h1>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-sm-12">
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col">Nome</th>
+							<th scope="col">imagem</th>
+							<th scope="col">preco</th>
+							<th scope="col">promoção</th>
+							<th scope="col">Desc. %</th>
+							<th scope="col">País</th>
+							<th scope="col">Continente</th>
+							<th scope="col">Ações</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="destino : ${destinos}">
+							<th scope="row" th:text="${destino.id}"></th>
+							<td>
+								<a th:text="${destino.nome}"></a>
+							</td>
+							<td>
+								<img alt="Image" class="img_prod" height="50px" width="70px"
+									th:src="|/page/imagem/${destino.id}|" />
+
+							</td>
+							<td th:text="${destino.preco}"></td>
+							<td class="card-title" style="font-weight: bold" th:text="${destino.promocao} ?  'Sim ': 'Não'"></td>
+							<td th:text="${#numbers.formatDecimal(destino.porcDesconto, 0, 0)}+'%'"></td>
+							<td th:text="${destino.pais}"></td>
+							<td th:text="${destino.continente}"></td>
+							<td>
+								<a th:href="@{/admin/destino/{id} (id=${destino.id})}" class="btn btn-warning">
+									Editar
+								</a>
+								<a th:href="@{/admin/{id}/excluir (id=${destino.id})}" class="btn btn-danger"
+									onclick="return confirm('Tem certeza que deseja excluir o destino?');">
+									Excluir
+								</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-sm-12">
+				<a th:href="@{/admin/cadastro}" class="btn btn-primary">Cadastrar novo Destino</a>
+			</div>
+		</div>
+	</main>
+
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+		crossorigin="anonymous"></script>
+
+	<footer th:replace="~{fragmentos/admin/_footerAdmin :: footer}"></footer>
+</body>
+
+</html>

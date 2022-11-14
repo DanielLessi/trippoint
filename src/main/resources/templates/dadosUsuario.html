@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="pt-br">
+<head th:replace="~{fragmentos/_header :: header('TripPoint - Cadastro de Destinos')}"></head>
+<body>
+	<nav th:replace="~{fragmentos/_navbar :: navbar(${isLogged}, ${usuarioNavbar}, ${isAdmin}, ${notificacoes})}"></nav>
+	<div class="container-sm">
+	<h1>Cadastro de Destino</h1>
+	<!--Form-->
+		<form th:action="@{/page/cadastrarUsuario}" method="POST" th:object="${usuario}">
+			<div class="mb-3">
+				<label for="nome" class="form-label">Nome:</label>
+				<input type="text" class="form-control" id="nome" placeholder="nome" th:field="*{nome}" required>
+			</div>
+			<div class="mb-3">
+				<label for="sobrenome" class="form-label">Sobrenome:</label>
+				<input type="text" class="form-control" id="sobrenome" placeholder="sobrenome" th:field="*{sobrenome}" required>
+			</div>
+			<div class="mb-3">
+				<label for="email" class="form-label">email:</label>
+				<input type="email" class="form-control" id="username" placeholder="email" th:field="*{username}" required>
+			</div>
+			<div class="mb-3">
+				<label for="continente" class="form-label">Senha</label>
+				<input type="text" class="form-control" id="password" placeholder="senha" th:field="*{password}" required>
+			</div>
+			<button type="submit" class="btn btn-primary">Cadastrar</button>
+		</form>
+	<!--Form-->
+	</div>
+	<footer th:replace="~{fragmentos/_footer :: footer}"></footer>
+</body>
+
+</html>

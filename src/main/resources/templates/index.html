@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="pt-br">
+<head th:replace="~{fragmentos/_header :: header('TripPoint - Home')}"></head>
+<body>
+	<nav th:replace="~{fragmentos/_navbar :: navbar(${isLogged}, ${usuarioNavbar}, ${isAdmin}, ${notificacoes})}"></nav>
+	<!--Conteúdo-->
+	<!--- Carrossel -->
+      <div id="slides" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <button
+            type="button"
+            data-bs-target="#slides"
+            data-bs-slide-to="0"
+            class="active"
+            aria-current="true"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#slides"
+            data-bs-slide-to="1"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#slides"
+            data-bs-slide-to="2"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#slides"
+            data-bs-slide-to="3"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#slides"
+            data-bs-slide-to="4"
+          ></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="/imagens/caroussel/background.png" class="d-block w-100" />
+            <div class="carousel-caption">
+              <h1 class="display-2">Europa</h1>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="/imagens/caroussel/background2.png" class="d-block w-100" />
+            <div class="carousel-caption">
+              <h1 class="display-2">Disney</h1>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="/imagens/caroussel/background3.png" class="d-block w-100" />
+            <div class="carousel-caption">
+              <h1 class="display-2">Japão</h1>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="/imagens/caroussel/background4.png" class="d-block w-100" />
+            <div class="carousel-caption">
+              <h1 class="display-2">Brasil</h1>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="/imagens/caroussel/background5.png" class="d-block w-100" />
+            <div class="carousel-caption">
+              <h1 class="display-2">Ásia</h1>
+            </div>
+          </div>
+        </div>
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselExampleIndicators"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Anterior</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselExampleIndicators"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Próxima</span>
+        </button>
+      </div>
+
+      <!--- Jumbotron Ofertas -->
+      <div class="container-fluid padding">
+        <div class="row jumbotron">
+          <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-10">
+            <p class="lead">
+              Se você quer viajar, mas ainda não sabe para onde,veja nossa
+              sessão de ofertas, temos opções promocionais imperdíveis. Fique de
+              olho em nossas oportunidades durante a madrugada, quando
+              geralmente são disponibilizadas ofertas relâmpago, sua viajem dos
+              sonhos pode custar menos do que você imagina.
+            </p>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-2">
+            <a href="/page/promocoes"
+              ><button type="button" class="btn btn-outline-secondary btn-lg">
+                Ver Ofertas
+              </button></a
+            >
+          </div>
+        </div>
+      </div>
+      
+      <!--- Mensagem -->
+      <div class="row welcome text-center">
+        <p class="lead">
+          <b>Reserve sua viagem na agência de viagens que mais cresce no Brasil.</b>
+        </p>        
+      </div>
+	<!--Conteúdo-->
+	<footer th:replace="~{fragmentos/_footer :: footer}"></footer>
+</body>
+
+</html>

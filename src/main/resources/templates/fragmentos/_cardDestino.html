@@ -1,0 +1,40 @@
+<!-- CardDestino -->
+<div th:fragment="cardDestino(
+	id,
+	nome,
+	preco,
+	promocao,
+	porcPromocao
+	)"
+	class="card border-secondary m-1 p-1" style="width: 300px;">
+    
+  <div class="card-body">
+  	<!--Imagem-->
+  	<img alt="Image" class="card-img-top" height="180px" width="286px" th:src="|/page/imagem/${id}|" />
+  	<!--Tag PorcDesconto-->
+  	<div th:if="${promocao}" class="tagDesconto" th:text="${#numbers.formatDecimal(porcPromocao, 0, 0)}+ '% Desc.'">placeholder</div>
+  	<!--Nome-->
+    <h4 class="card-title" style="font-weight: bold" th:text="${nome}">São Paulo</h4>
+    <!--Preço-->
+    <text class="card-title">a partir de: </text>
+    <!--Preço antes do desconto-->
+    <text th:if="${promocao}" class="card-title"
+    style="text-decoration: line-through; color:gray"
+    th:text="'R$ ' + ${preco}+'0'">R$500,00</text>
+    <!--Preço antes do desconto-->
+    <h4 class="card-title" style="font-weight: bold"
+     th:text="${promocao} ? 'R$ ' + ${preco - (preco * (porcPromocao/100))}+'0' :
+     'R$ ' + ${preco}+'0'">R$350,00</h4>
+    
+    
+    <ul class="list-group list-group-flush">
+	    <li class="list-group-item align-text-bottom"><img src="../../../logos/voo.png">    Voo ida e volta</li>
+	    <li class="list-group-item align-text-bottom"><img src="../../../logos/hotel.png">    Hospedagem</li>
+	    <li class="list-group-item align-text-bottom"><img src="../../../logos/cafe.png">    Café da manhã</li>
+ 	 </ul>
+ 	 <div class="d-grid gap-2">
+    	<a type="button" th:href="@{/page/agendar/{id} (id=${id})}"  class="btn btn-outline-dark">	Reservar </a>
+ 	 </div>
+  </div>
+</div>
+<!-- CardDestino -->

@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head th:replace="~{fragmentos/_header :: header('TripPoint - Home')}"></head>
+
+<body>
+	<nav th:replace="~{fragmentos/_navbar :: navbar(${isLogged}, ${usuarioNavbar}, ${isAdmin}, ${notificacoes})}"></nav>
+	<div class="container-sm">
+		<!--- Títulos Pacotes -->
+		<div class="container-fluid padding">
+			<div class="row welcome">
+				<div class="col-12">
+					<h1 class="display-4">Pacotes em Promoção.</h1>
+				</div>
+				<hr />
+				<div class="col-12">
+					<p class="lead">
+						Uma seleção de nossos pacotes favoritos com descontos imperdíveis.
+					</p>
+				</div>
+				<div class="row">
+					<tr th:each="destino : ${destinos}">
+						<div th:replace="~{fragmentos/_cardDestino :: cardDestino(
+							${destino.id},
+							${destino.nome},
+							${destino.preco},
+							${destino.promocao},
+							${destino.porcDesconto}
+							)}"></div>
+					</tr>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--- Fim Títulos Pacotes -->
+	<footer th:replace="~{fragmentos/_footer :: footer}"></footer>
+</body>
+
+</html>

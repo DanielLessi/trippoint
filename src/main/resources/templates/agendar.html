@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head th:replace="~{fragmentos/_header :: header('TripPoint - Home')}"></head>
+
+<body>
+	<nav th:replace="~{fragmentos/_navbar :: navbar(${isLogged}, ${usuarioNavbar}, ${isAdmin}, ${notificacoes})}"></nav>
+	<main class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<h1>Detalhes do Destino</h1>
+			</div>
+		</div>
+
+		<div class="card">
+			<div class="row">
+				<!-- Card Exemplo -->
+				<div th:replace="~{fragmentos/_cardDestino :: cardDestino(
+							${destino.id},
+							${destino.nome},
+							${destino.preco},
+							${destino.promocao},
+							${destino.porcDesconto}
+							)}"></div>
+				<!-- Card Exemplo -->
+
+
+				<!-- Formulário Edição -->
+				<div class="col">
+
+					<!--Form-->
+					<form th:action="@{/page/agendar/{id} (id=${destino.id})}" method="POST"
+						th:object="${ViagemAgendada}" enctype="multipart/form-data">
+						<div class="mb-1 p-1 bg-light border">
+							<h5>Dados do Usuário</h5>
+							<label
+								th:text="'Nome: ' + ${usuarioNavbar.nome} +' '+ ${usuarioNavbar.sobrenome}"></label><br>
+						</div>
+						<div class="mb-1 p-1 bg-light border">
+							<h5>Dados do Destino</h5>
+							<label th:text="'Destino: ' + ${destino.nome}"></label><br>
+							<label th:text="'Preço da viagem ao destino: ' + ${destino.preco}"></label>
+						</div>
+						<div class="mb-1 p-1 bg-light border">
+							<h5>Datas:</h5>
+							<label for="data" class="form-label">Ida:</label>
+							<input type="date" id="dataIda" th:field="*{dataIda}" required />
+							<input type="time" id="horaIda" th:field="*{horaIda}" required>
+							<label for="data" class="form-label">Volta:</label>
+							<input type="date" id="dataIda" th:field="*{dataVolta}" required />
+							<input type="time" id="horaIda" th:field="*{horaVolta}" required>
+							<br><button type="submit" class="btn btn-outline-dark">Agendar</button>
+						</div>
+						
+					</form>
+					<div class="mb-3 p-2 bg-light border">
+					<a>Criar um alerta para avisar caso o pacote entre em promoção com um valor abaixo de:</a>
+					<form th:action="@{/page/criarAlertaPreco/{id} (id=${destino.id})}" method="POST" th:object="${AlertaPreco}"
+						class="form-floating">
+						<div class="form-floating mb-3">
+						<input type="number" class="form-control" id="preco" th:field="*{preco}">
+						<label for="floatingInputValue">Preço abaixo de:</label>
+						</div>
+						<button type="submit" class="btn btn-outline-dark">Criar Alerta</button>
+					</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+	<footer th:replace="~{fragmentos/_footer :: footer}"></footer>
+</body>
+
+</html>

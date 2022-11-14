@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head th:replace="~{fragmentos/_header :: header('TripPoint - Home')}"></head>
+
+<body>
+	<nav th:replace="~{fragmentos/_navbar :: navbar(${isLogged}, ${usuarioNavbar}, ${isAdmin}, ${notificacoes})}"></nav>
+	<main class="container">
+		<h1>Alertas Usuario</h1>
+		<div class="row">
+			<div class="col-sm-12">
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col">Destino</th>
+							<th scope="col">Valor Alerta</th>
+							<th scope="col">Valor Atual abaixo do alerta</th>
+							<th scope="col">Ações</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="alertaPreco : ${alertasPreco}">
+							<th scope="row" th:text="${alertaPreco.id}"></th>
+							<td><a th:text="${alertaPreco.destino.nome}" th:href="@{/page/alerta/{id} (id=${alertaPreco.id})}"></a></td>
+							<td th:text="${alertaPreco.preco}"></td>
+							<td th:text="${alertaPreco.valorAbaixoAlerta} ? 'Sim' : 'Não'">></td>
+							<td>
+							<a th:href="@{/page/alerta/{id}/excluir (id=${alertaPreco.id})}" class="btn btn-danger"
+									onclick="return confirm('Tem certeza que deseja excluir o alerta?');">
+									Excluir</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</main>
+	<footer th:replace="~{fragmentos/_footer :: footer}"></footer>
+</body>
+
+</html>

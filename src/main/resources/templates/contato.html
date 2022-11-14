@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head th:replace="~{fragmentos/_header :: header('TripPoint - Home')}"></head>
+
+<body>
+	<nav th:replace="~{fragmentos/_navbar :: navbar(${isLogged}, ${usuarioNavbar}, ${isAdmin}, ${notificacoes})}"></nav>
+	<div class="container">
+		<!--- Títulos Contato -->
+		<div class="container-fluid padding">
+			<div class="row welcome text-center">
+				<div class="col-12">
+					<h1 class="display-4">Fale conosco.</h1>
+				</div>
+				<hr />
+				<div class="col-12">
+					<p class="lead">
+						Não se preocupe, estamos aqui para fazer com que suas férias sejam
+						para descansar, não esquentar a cabeça.
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<!--- Contatos Tel -->
+
+		<div class="container-fluid padding">
+			<div class="row justify-content-center padding">
+				<div class="col-md-3">
+					<div class="card">
+						<div class="card-body">
+							<h4 class="card-title">WhatsApp</h4>
+							<p class="card-text">(xx)99999-9999.</p>
+							<p class="card-text">
+								Tire dúvidas em nosso sistema e fale com um atendente.
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="card">
+						<div class="card-body">
+							<h4 class="card-title">Canal telefônico</h4>
+							<p class="card-text">(xx)0800-0000.</p>
+							<p class="card-text">
+								Obtenha informações sobre nossos procedimentos.
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<hr />
+
+		<!--- Formulário -->
+		<form th:action="@{/page/enviarMensagem}" method="POST" th:object="${contatoEmail}" class="form-floating">
+			<input type="email" class="form-control" id="email" placeholder="name@example.com" th:field="*{email}">
+			<label for="floatingInputValue">Email</label>
+			<div class="form-floating">
+				<textarea class="form-control"
+					placeholder="Por favor, explique sua dúvida/problema com o mais detalhado o possível." id="mensagem"
+					style="height: 100px" th:field="*{mensagem}" maxlength="240"></textarea>
+				<label for="floatingTextarea2">Mensagem</label>
+			</div>
+			<button type="submit" class="btn btn-outline-dark">Enviar</button>
+		</form>
+	</div>
+	<footer th:replace="~{fragmentos/_footer :: footer}"></footer>
+</body>
+
+</html>
